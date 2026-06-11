@@ -144,7 +144,7 @@
             !logged && React.createElement(LoginForm, { onSuccess: () => setLogged(true) }),
             logged && loading && React.createElement(MUI.Box, { sx: { textAlign: "center", py: 4 } }, React.createElement(MUI.CircularProgress, null)),
             logged && err && React.createElement(MUI.Alert, { severity: "error" }, err),
-            logged && data && !loading && React.createElement(Dashboard, { data, onRefresh: refresh }))))));
+            logged && data && !loading && React.createElement(Dashboard, { data, onRefresh: refresh })))));
   }
 
   w.SLG.mount = function () {
