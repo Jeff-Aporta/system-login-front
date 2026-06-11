@@ -29,7 +29,7 @@ Front estático publicado en GitHub Pages. Consume el Worker [`system-login`](ht
 - **Permisos**: reglas `allow` del rol y excepciones por usuario con scope SQL.
 - **Penalización**: intentos fallidos y bloqueo temporal.
 - **Servicios**: listado de apps del ecosistema con enlace directo.
-- **Tema** claro/oscuro (dodgerblue) y switch **API local / online** (`localhost:8787` ↔ Worker).
+- **Tema** claro/oscuro (dodgerblue) y switch **API local / online** (`localhost:8781` ↔ Worker).
 
 ## Integración en otros fronts
 
