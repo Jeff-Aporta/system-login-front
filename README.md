@@ -6,6 +6,19 @@
 
 <p align="center"><strong>Autenticación centralizada</strong> — login JWT, sesión, permisos y catálogo de servicios del ecosistema Jeff-Aporta / PatyIA.</p>
 
+## Arquitectura
+
+```mermaid
+flowchart LR
+  SLF[system-login-front]
+  FS[front-shared CDN]
+  ORCH[main-orchestrator]
+  SL[system-login Worker]
+  SLF --> FS
+  SLF -->|POST /api/auth/token| ORCH --> SL
+  SLF -->|GET /api/session| ORCH --> SL
+```
+
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/system-login-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
