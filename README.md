@@ -16,6 +16,10 @@ Panel web centralizado de **autenticación** para el ecosistema Jeff-Aporta / Pa
 
 **https://jeff-aporta.github.io/system-login-front/**
 
+## Vista previa
+
+![Panel de login en GitHub Pages](./docs/gh-pages.png)
+
 Front estático publicado en GitHub Pages. Consume el Worker [`system-login`](https://github.com/Jeff-Aporta/system-login-back) con sesión JWT enriquecida (rol, permisos, servicios). Es el **proveedor de auth** que usan el resto de micro-frontends del ecosistema.
 
 ## Qué hace
