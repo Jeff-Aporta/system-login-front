@@ -1,16 +1,17 @@
-# system-login-front
+<p align="center">
+  <img src="https://api.iconify.design/mdi/shield-key-outline.svg?color=%235e35b1&width=96&height=96" width="96" height="96" alt="System Login" />
+</p>
 
-Panel web centralizado de **autenticación** para el ecosistema Jeff-Aporta / PatyIA. Permite iniciar sesión, consultar el perfil del usuario, revisar **permisos** (allow / excepciones SQL), ver el estado de **penalización** por intentos fallidos y acceder al **catálogo de servicios** enlazados.
+<h1 align="center">system-login-front</h1>
+
+<p align="center"><strong>Autenticación centralizada</strong> — login JWT, sesión, permisos y catálogo de servicios del ecosistema Jeff-Aporta / PatyIA.</p>
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/system-login-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![MUI](https://img.shields.io/badge/MUI-5-007FFF?logo=mui&logoColor=white)](https://mui.com/)
-[![Emotion](https://img.shields.io/badge/Emotion-11-D36AC2)](https://emotion.sh/)
-[![Babel Standalone](https://img.shields.io/badge/Babel%20Standalone-7-F9DC3E?logo=babel&logoColor=black)](https://babeljs.io/)
 [![Cloudflare Workers](https://img.shields.io/badge/API-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)](https://github.com/Jeff-Aporta/system-login-back)
 [![Neon](https://img.shields.io/badge/BD-Neon%20BD__AUTH-00E599?logo=neon&logoColor=black)](https://neon.tech/)
-[![Sin build](https://img.shields.io/badge/build-sin%20paso%20de%20build-555)](https://github.com/Jeff-Aporta/system-login-front)
 
 ## Demo
 
@@ -20,16 +21,18 @@ Panel web centralizado de **autenticación** para el ecosistema Jeff-Aporta / Pa
 
 ![Panel de login en GitHub Pages](./docs/gh-pages.png)
 
-Front estático publicado en GitHub Pages. Consume el ecosistema vía **gateway langlab** (`/auth/*`, `/api/session` → system-login). Es el **proveedor de auth** que usan el resto de micro-frontends.
-
 ## Qué hace
 
-- **Login / logout** con las mismas credenciales del laboratorio (LangLab / PatyIA).
+- **Login / logout** con credenciales del laboratorio (LangLab / PatyIA).
 - **Dashboard de sesión**: usuario, rol, expiración del token.
 - **Permisos**: reglas `allow` del rol y excepciones por usuario con scope SQL.
 - **Penalización**: intentos fallidos y bloqueo temporal.
 - **Servicios**: listado de apps del ecosistema con enlace directo.
-- **Tema** claro/oscuro (dodgerblue) y switch **gateway local :8780 / producción**.
+- **Tema** claro/oscuro y switch **orquestador local :8780 / producción**.
+
+## Metadatos
+
+Icono de identidad: `mdi:shield-key-outline` · tema `#5e35b1` · [`JeffAppMeta`](https://github.com/Jeff-Aporta/front-shared/blob/main/cdn/isa/js/core/app-meta.js).
 
 ## Integración en otros fronts
 
@@ -37,13 +40,16 @@ Los demás paneles reutilizan la clave `system-login:session` en `sessionStorage
 
 ```javascript
 await SLG.Session.login(user, password);
-const headers = SLG.Session.authHeader(); // Authorization: Bearer …
+const headers = SLG.Session.authHeader();
 const session = await fetch(SLG.Config.apiUrl("/api/session"), { headers }).then(r => r.json());
 ```
 
 ## Desarrollo local
 
-Sirve la carpeta raíz (`npx serve .`) y levanta el gateway langlab en `:8780` si usas modo local.
+```bash
+npx serve .
+# main-orchestrator en :8780 si usas modo local
+```
 
 ## Repos relacionados
 
