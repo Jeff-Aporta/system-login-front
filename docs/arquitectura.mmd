@@ -1,0 +1,8 @@
+flowchart LR
+  SLF[system-login-front]
+  FS[front-shared CDN]
+  ORCH[main-orchestrator]
+  SL[system-login Worker]
+  SLF --> FS
+  SLF -->|POST /api/auth/token| ORCH --> SL
+  SLF -->|GET /api/session| ORCH --> SL

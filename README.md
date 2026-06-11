@@ -7,17 +7,9 @@
 <p align="center"><strong>Autenticación centralizada</strong> — login JWT, sesión, permisos y catálogo de servicios del ecosistema Jeff-Aporta / PatyIA.</p>
 
 ## Arquitectura
+![Diagrama de arquitectura](https://mermaid.ink/img/JSV7aW5pdDogeyJmbG93Y2hhcnQiOiB7ImN1cnZlIjogInN0ZXBBZnRlciIsICJodG1sTGFiZWxzIjogdHJ1ZSwgIm5vZGVTcGFjaW5nIjogNDQsICJyYW5rU3BhY2luZyI6IDUyLCAicGFkZGluZyI6IDE4fX19JSUKZmxvd2NoYXJ0IExSCiAgU0xGW3N5c3RlbS1sb2dpbi1mcm9udF0KICBGU1tmcm9udC1zaGFyZWQgQ0ROXQogIE9SQ0hbbWFpbi1vcmNoZXN0cmF0b3JdCiAgU0xbc3lzdGVtLWxvZ2luIFdvcmtlcl0KICBTTEYgLS0-IEZTCiAgU0xGIC0tPnxQT1NUIC9hcGkvYXV0aC90b2tlbnwgT1JDSCAtLT4gU0wKICBTTEYgLS0-fEdFVCAvYXBpL3Nlc3Npb258IE9SQ0ggLS0-IFNM)
 
-```mermaid
-flowchart LR
-  SLF[system-login-front]
-  FS[front-shared CDN]
-  ORCH[main-orchestrator]
-  SL[system-login Worker]
-  SLF --> FS
-  SLF -->|POST /api/auth/token| ORCH --> SL
-  SLF -->|GET /api/session| ORCH --> SL
-```
+> **Fuente del diagrama:** [`docs/arquitectura.mmd`](docs/arquitectura.mmd) — editar el `.mmd`; regenerar imagen: `node scripts/mermaid-ink-url.mjs system-login/frontend/docs/arquitectura.mmd` (desde `apps/`).
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/system-login-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
