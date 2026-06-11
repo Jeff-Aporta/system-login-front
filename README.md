@@ -20,7 +20,7 @@ Panel web centralizado de **autenticación** para el ecosistema Jeff-Aporta / Pa
 
 ![Panel de login en GitHub Pages](./docs/gh-pages.png)
 
-Front estático publicado en GitHub Pages. Consume el Worker [`system-login`](https://github.com/Jeff-Aporta/system-login-back) con sesión JWT enriquecida (rol, permisos, servicios). Es el **proveedor de auth** que usan el resto de micro-frontends del ecosistema.
+Front estático publicado en GitHub Pages. Consume el ecosistema vía **gateway langlab** (`/auth/*`, `/api/session` → system-login). Es el **proveedor de auth** que usan el resto de micro-frontends.
 
 ## Qué hace
 
@@ -29,7 +29,7 @@ Front estático publicado en GitHub Pages. Consume el Worker [`system-login`](ht
 - **Permisos**: reglas `allow` del rol y excepciones por usuario con scope SQL.
 - **Penalización**: intentos fallidos y bloqueo temporal.
 - **Servicios**: listado de apps del ecosistema con enlace directo.
-- **Tema** claro/oscuro (dodgerblue) y switch **API local / online** (`localhost:8781` ↔ Worker).
+- **Tema** claro/oscuro (dodgerblue) y switch **gateway local :8780 / producción**.
 
 ## Integración en otros fronts
 
@@ -43,13 +43,13 @@ const session = await fetch(SLG.Config.apiUrl("/api/session"), { headers }).then
 
 ## Desarrollo local
 
-Sirve la carpeta raíz (`npx serve .`) y, si hace falta, levanta el backend con `wrangler dev` en [`system-login-back`](https://github.com/Jeff-Aporta/system-login-back).
+Sirve la carpeta raíz (`npx serve .`) y levanta el gateway langlab en `:8780` si usas modo local.
 
 ## Repos relacionados
 
 | Repo | Rol |
 |------|-----|
-| [system-login-back](https://github.com/Jeff-Aporta/system-login-back) | API auth (privado) |
-| [system-login-front](https://github.com/Jeff-Aporta/system-login-front) | Este panel (público, GH Pages) |
+| [system-login-back](https://github.com/Jeff-Aporta/system-login-back) | API auth (Worker) |
+| [system-login-front](https://github.com/Jeff-Aporta/system-login-front) | Este panel (GH Pages) |
 
 MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)

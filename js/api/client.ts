@@ -1,4 +1,4 @@
-/* api/client — sesión enriquecida desde el Worker. */
+/* api/client — sesión enriquecida vía gateway (/api/session → system-login). */
 (function () {
   "use strict";
 
