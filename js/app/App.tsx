@@ -92,9 +92,14 @@
         React.createElement(MUI.Typography, { variant: "h6", gutterBottom: true }, "Servicios"),
         React.createElement(MUI.List, { dense: true },
           (d.services || []).map((s: any) =>
-            React.createElement(MUI.ListItem, { key: s.id, secondaryAction:
-              React.createElement(MUI.Button, { href: s.url, target: "_blank", rel: "noreferrer", size: "small" }, "Abrir") },
-              React.createElement(MUI.ListItemText, { primary: s.name, secondary: s.description })))));
+            React.createElement(MUI.ListItem, {
+              key: s.id,
+              secondaryAction: React.createElement(MUI.Button, {
+                href: s.url, target: "_blank", rel: "noreferrer", size: "small",
+              }, "Abrir"),
+            }, React.createElement(MUI.ListItemText, { primary: s.name, secondary: s.description }))
+          ))
+      ));
   }
 
   function App() {
