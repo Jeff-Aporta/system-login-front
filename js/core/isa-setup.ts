@@ -3,6 +3,7 @@
   "use strict";
   window.ISAFront.registerApp({
     ns: "SLG",
+    app: "system-login",
     theme: { lsKey: "system-login:theme" },
     widgets: { targetStyle: "chip" },
     session: true,
