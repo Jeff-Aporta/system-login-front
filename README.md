@@ -33,7 +33,7 @@
 - **Permisos**: reglas `allow` del rol y excepciones por usuario con scope SQL.
 - **Penalización**: intentos fallidos y bloqueo temporal.
 - **Servicios**: listado de apps del ecosistema con enlace directo.
-- **Tema** claro/oscuro y switch **orquestador local :8780 / producción**.
+- **Tema** claro/oscuro y switch **local / producción** (TargetSwitch).
 
 ## Metadatos
 
@@ -53,7 +53,7 @@ const session = await fetch(SLG.Config.apiUrl("/api/session"), { headers }).then
 
 ```bash
 npx serve .
-# main-orchestrator en :8780 si usas modo local
+# TargetSwitch → modo local si desarrollas backends en wrangler dev
 ```
 
 ## Repos relacionados
