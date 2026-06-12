@@ -4,19 +4,12 @@
 
 <h1 align="center">system-login-front</h1>
 
-<p align="center"><strong>Autenticación centralizada</strong> — login JWT, sesión, permisos y catálogo de servicios del ecosistema Jeff-Aporta / PatyIA.</p>
-
-## Arquitectura
-![Diagrama de arquitectura](https://mermaid.ink/img/JSV7aW5pdDogeyJmbG93Y2hhcnQiOiB7ImN1cnZlIjogInN0ZXBBZnRlciIsICJodG1sTGFiZWxzIjogdHJ1ZSwgIm5vZGVTcGFjaW5nIjogNDQsICJyYW5rU3BhY2luZyI6IDUyLCAicGFkZGluZyI6IDE4fX19JSUKZmxvd2NoYXJ0IExSCiAgU0xGW3N5c3RlbS1sb2dpbi1mcm9udF0KICBGU1tmcm9udC1zaGFyZWQgQ0ROXQogIE9SQ0hbbWFpbi1vcmNoZXN0cmF0b3JdCiAgU0xbc3lzdGVtLWxvZ2luIFdvcmtlcl0KICBTTEYgLS0-IEZTCiAgU0xGIC0tPnxQT1NUIC9hcGkvYXV0aC90b2tlbnwgT1JDSCAtLT4gU0wKICBTTEYgLS0-fEdFVCAvYXBpL3Nlc3Npb258IE9SQ0ggLS0-IFNM)
-
-> **Fuente del diagrama:** [`docs/arquitectura.mmd`](docs/arquitectura.mmd) — editar el `.mmd`; regenerar imagen: `node scripts/mermaid-ink-url.mjs system-login/frontend/docs/arquitectura.mmd` (desde `apps/`).
+<p align="center"><strong>Autenticación centralizada</strong> — login, sesión, permisos y catálogo de servicios Jeff-Aporta / PatyIA.</p>
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/system-login-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![MUI](https://img.shields.io/badge/MUI-5-007FFF?logo=mui&logoColor=white)](https://mui.com/)
-[![Cloudflare Workers](https://img.shields.io/badge/API-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)](https://github.com/Jeff-Aporta/system-login-back)
-[![Neon](https://img.shields.io/badge/BD-Neon%20BD__AUTH-00E599?logo=neon&logoColor=black)](https://neon.tech/)
 
 ## Demo
 
@@ -28,39 +21,19 @@
 
 ## Qué hace
 
-- **Login / logout** con credenciales del laboratorio (LangLab / PatyIA).
-- **Dashboard de sesión**: usuario, rol, expiración del token.
-- **Permisos**: reglas `allow` del rol y excepciones por usuario con scope SQL.
-- **Penalización**: intentos fallidos y bloqueo temporal.
-- **Servicios**: listado de apps del ecosistema con enlace directo.
-- **Tema** claro/oscuro y switch **local / producción** (TargetSwitch).
+- **Login / logout** con credenciales del laboratorio
+- **Dashboard de sesión**: usuario, rol, expiración del token
+- **Permisos**: reglas del rol y excepciones por usuario
+- **Penalización**: intentos fallidos y bloqueo temporal
+- **Servicios**: listado de apps del ecosistema con enlace directo
+- **Tema** claro/oscuro y modo local o producción
 
-## Metadatos
+Icono: `mdi:shield-key-outline` · tema `#5e35b1`
 
-Icono de identidad: `mdi:shield-key-outline` · tema `#5e35b1` · [`JeffAppMeta`](https://github.com/Jeff-Aporta/front-shared/blob/main/cdn/isa/js/core/app-meta.js).
-
-## Integración en otros fronts
-
-Los demás paneles reutilizan la clave `system-login:session` en `sessionStorage`:
-
-```javascript
-await SLG.Session.login(user, password);
-const headers = SLG.Session.authHeader();
-const session = await fetch(SLG.Config.apiUrl("/api/session"), { headers }).then(r => r.json());
-```
-
-## Desarrollo local
+## Vista local
 
 ```bash
 npx serve .
-# TargetSwitch → modo local si desarrollas backends en wrangler dev
 ```
-
-## Repos relacionados
-
-| Repo | Rol |
-|------|-----|
-| [system-login-back](https://github.com/Jeff-Aporta/system-login-back) | API auth (Worker) |
-| [system-login-front](https://github.com/Jeff-Aporta/system-login-front) | Este panel (GH Pages) |
 
 MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
