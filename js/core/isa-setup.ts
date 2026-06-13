@@ -4,7 +4,7 @@
   window.ISAFront.registerApp({
     ns: "SLG",
     app: "system-login",
-    theme: { lsKey: "system-login:theme" },
+    theme: true,
     widgets: { targetStyle: "chip" },
     session: true,
   });

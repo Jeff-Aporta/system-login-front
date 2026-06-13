@@ -27,5 +27,3 @@
 - **Penalización** por intentos fallidos
 - **Catálogo de apps** del ecosistema con enlace directo
 - **Tema** claro/oscuro
-
-Icono: `mdi:shield-key-outline` · tema `#5e35b1`

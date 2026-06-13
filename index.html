@@ -1,110 +1,65 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8" />
-
-<script src="https://cdn.jsdelivr.net/gh/Jeff-Aporta/front-shared@main/cdn/base-href.js"></script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<script src="https://cdn.jsdelivr.net/gh/Jeff-Aporta/front-shared@main/cdn/isa/js/core/app-meta.js"></script>
-
-<script>
-
-JeffAppMeta.apply({
-
-  title: "System Login — Jeff-Aporta",
-
-  shortName: "System Login",
-
-  description: "Entrar al ecosistema Jeff-Aporta: login, sesión, permisos y apps disponibles.",
-
-  keywords: "login, JWT, auth, permisos, system-login, Jeff-Aporta, PatyIA",
-
-  icon: "mdi:shield-key-outline",
-
-  themeColor: "#5e35b1",
-
-  url: "https://jeff-aporta.github.io/system-login-front/",
-
-  siteName: "Jeff-Aporta — System Login"
-
-});
-
-</script>
-
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jeff-Aporta/front-shared@main/cdn/isa/css/base.css" />
-
+<title>System Login — Jeff-Aporta</title>
+<meta name="description" content="Entrar al ecosistema Jeff-Aporta: login, sesión, permisos y apps disponibles." />
+<meta name="keywords" content="login, JWT, auth, permisos, system-login, Jeff-Aporta, PatyIA" />
+<meta name="application-name" content="System Login" />
+<meta name="theme-color" content="#5e35b1" />
+<meta name="app-theme-ls-key" content="system-login:theme" />
+<meta name="app-icon" content="mdi:shield-key-outline" />
+<link rel="canonical" href="https://jeff-aporta.github.io/system-login-front/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_CO" />
+<meta property="og:site_name" content="Jeff-Aporta — System Login" />
+<meta property="og:title" content="System Login — Jeff-Aporta" />
+<meta property="og:description" content="Entrar al ecosistema Jeff-Aporta: login, sesión, permisos y apps disponibles." />
+<meta property="og:url" content="https://jeff-aporta.github.io/system-login-front/" />
+<meta property="og:image" content="https://api.iconify.design/mdi/shield-key-outline.svg?color=%235e35b1&width=512&height=512" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="System Login — Jeff-Aporta" />
+<meta name="twitter:description" content="Entrar al ecosistema Jeff-Aporta: login, sesión, permisos y apps disponibles." />
+<meta name="twitter:image" content="https://api.iconify.design/mdi/shield-key-outline.svg?color=%235e35b1&width=512&height=512" />
+<link rel="icon" href="https://api.iconify.design/mdi/shield-key-outline.svg?color=%235e35b1&width=32&height=32" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="https://api.iconify.design/mdi/shield-key-outline.svg?color=%235e35b1&width=180&height=180" />
+<script src="https://cdn.jsdelivr.net/gh/Jeff-Aporta/front-shared@9e576a1/cdn/base-href.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Jeff-Aporta/front-shared@9e576a1/cdn/isa/css/base.css" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 <script type="importmap">
-
 {
-
   "imports": {
-
     "react": "https://esm.sh/react@18.3.1",
-
     "react-dom": "https://esm.sh/react-dom@18.3.1",
-
     "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?external=react",
-
     "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-
     "@emotion/react": "https://esm.sh/@emotion/react@11.14.0?external=react,react-dom",
-
     "@emotion/styled": "https://esm.sh/@emotion/styled@11.14.1?external=react,react-dom,@emotion/react",
-
     "@mui/material": "https://esm.sh/@mui/material@9.1.0?external=react,react-dom,@emotion/react,@emotion/styled",
-
     "@mui/material/": "https://esm.sh/@mui/material@9.1.0/"
-
   }
-
 }
-
 </script>
-
 <script src="https://unpkg.com/@babel/standalone@7.26.9/babel.min.js"></script>
-
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
-
 </head>
-
 <body>
-
 <div id="root"></div>
-
 <script>
-
 (async function () {
-
   try {
-
     var res = await fetch("js/boot/loader.ts", { cache: "no-store" });
-
     if (!res.ok) throw new Error("No se pudo cargar el loader (" + res.status + ")");
-
     var out = Babel.transform(await res.text(), { presets: ["typescript"], filename: "loader.ts" }).code;
-
     eval(out);
-
   } catch (e) {
-
     document.getElementById("root").innerHTML =
-
       '<pre style="color:#ff8a80;padding:24px;font-family:monospace">Bootstrap error:\n' + (e && e.stack ? e.stack : e) + "</pre>";
-
   }
-
 })();
-
 </script>
-
 </body>
-
 </html>
-

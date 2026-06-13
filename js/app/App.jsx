@@ -4,6 +4,8 @@
   const MUI = MaterialUI;
 
   function LoginForm({ onSuccess }) {
+    const UI = window.SLG.UI;
+    const LS = window.ISAFront;
     const [user, setUser] = React.useState("");
     const [pass, setPass] = React.useState("");
     const [busy, setBusy] = React.useState(false);
@@ -23,22 +25,36 @@
     }
 
     return (
-      <MUI.Paper sx={{ p: 3, maxWidth: 420, mx: "auto" }} component="form" onSubmit={submit}>
-        <MUI.Typography variant="h5" gutterBottom>Iniciar sesión</MUI.Typography>
-        <MUI.Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Use su usuario y contraseña de la organización. La misma sesión sirve en todas las aplicaciones.
-        </MUI.Typography>
-        {err && (
-          <MUI.Alert severity="error" sx={{ mb: 2 }}>
-            {retry ? err + " — reintenta en " + retry + " s" : err}
-          </MUI.Alert>
-        )}
-        <MUI.TextField label="Usuario" fullWidth required margin="normal" value={user} onChange={(e) => setUser(e.target.value)} />
-        <MUI.TextField label="Contraseña" type="password" fullWidth required margin="normal" value={pass} onChange={(e) => setPass(e.target.value)} />
-        <MUI.Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }} disabled={busy}>
-          {busy ? "Entrando…" : "Entrar"}
-        </MUI.Button>
-      </MUI.Paper>
+      <MUI.Box sx={LS.loginPageSx()}>
+        <MUI.Paper
+          className="isa-login-card isa-glass-card"
+          elevation={0}
+          sx={LS.loginCardSx()}
+          component="form"
+          onSubmit={submit}
+        >
+          {LS.LoginHeaderBand(React, MUI, UI, {
+            icon: "mdi:shield-key-outline",
+            title: "Acceso al ecosistema",
+            accent: "#5e35b1",
+          })}
+          <MUI.Box sx={{ p: { xs: 2, sm: 2.5, md: 3 } }}>
+            <MUI.Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.6 }}>
+              Una sola sesión para todas las aplicaciones Jeff-Aporta.
+            </MUI.Typography>
+            {err && (
+              <MUI.Alert severity="error" sx={{ mb: 2 }}>
+                {retry ? err + " — reintenta en " + retry + " s" : err}
+              </MUI.Alert>
+            )}
+            <MUI.TextField label="Usuario" fullWidth required size="small" sx={{ mb: 2 }} value={user} onChange={(e) => setUser(e.target.value)} />
+            <MUI.TextField label="Contraseña" type="password" fullWidth required size="small" sx={{ mb: 2 }} value={pass} onChange={(e) => setPass(e.target.value)} />
+            <MUI.Button type="submit" variant="contained" fullWidth disabled={busy}>
+              {busy ? "Entrando…" : "Entrar"}
+            </MUI.Button>
+          </MUI.Box>
+        </MUI.Paper>
+      </MUI.Box>
     );
   }
 
@@ -180,26 +196,27 @@
       return () => window.removeEventListener(window.SLG.Session.EVENT, f);
     }, []);
 
-    const body = (
-      <MUI.Container maxWidth="md" sx={{ py: 3 }}>
-        {!logged && <LoginForm onSuccess={() => refresh()} />}
-        {logged && loading && (
-          <MUI.Box sx={{ textAlign: "center", py: 4 }}><MUI.CircularProgress /></MUI.Box>
-        )}
-        {logged && err && (
-          <MUI.Alert severity="error" sx={{ mb: 2 }} action={<MUI.Button size="small" onClick={refresh}>Reintentar</MUI.Button>}>
-            {err}
-          </MUI.Alert>
-        )}
-        {logged && !loading && data && <Dashboard data={data} onRefresh={refresh} />}
-        {logged && !loading && !data && (
-          <MUI.Stack spacing={2} alignItems="center" sx={{ py: 4 }}>
-            <MUI.Typography>Sesión activa como {window.SLG.Session.username()}</MUI.Typography>
-            <MUI.Button variant="contained" onClick={refresh}>Cargar panel</MUI.Button>
-          </MUI.Stack>
-        )}
-      </MUI.Container>
-    );
+    const body = !logged
+      ? <LoginForm onSuccess={() => refresh()} />
+      : (
+        <MUI.Container maxWidth="md" sx={{ py: 3 }}>
+          {loading && (
+            <MUI.Box sx={{ textAlign: "center", py: 4 }}><MUI.CircularProgress /></MUI.Box>
+          )}
+          {err && (
+            <MUI.Alert severity="error" sx={{ mb: 2 }} action={<MUI.Button size="small" onClick={refresh}>Reintentar</MUI.Button>}>
+              {err}
+            </MUI.Alert>
+          )}
+          {!loading && data && <Dashboard data={data} onRefresh={refresh} />}
+          {!loading && !data && (
+            <MUI.Stack spacing={2} alignItems="center" sx={{ py: 4 }}>
+              <MUI.Typography>Sesión activa como {window.SLG.Session.username()}</MUI.Typography>
+              <MUI.Button variant="contained" onClick={refresh}>Cargar panel</MUI.Button>
+            </MUI.Stack>
+          )}
+        </MUI.Container>
+      );
 
     return (
       <Shell ns="SLG" title="Acceso" icon="mdi:shield-account-outline" loginGate={false} showLogout={logged}>
