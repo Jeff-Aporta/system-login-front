@@ -29,5 +29,3 @@
 - **Tema** claro/oscuro
 
 Icono: `mdi:shield-key-outline` · tema `#5e35b1`
-
-MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
