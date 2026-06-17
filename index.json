@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "title": "System Login — Jeff-Aporta",
+    "applicationName": "System Login",
+    "description": "Entrar al ecosistema Jeff-Aporta: login, sesión, permisos y apps disponibles.",
+    "keywords": "login, JWT, auth, permisos, system-login, Jeff-Aporta, PatyIA",
+    "themeColor": "#5e35b1",
+    "themeLsKey": "system-login:theme",
+    "icon": "mdi:shield-key-outline",
+    "canonical": "https://jeff-aporta.github.io/system-login-front/",
+    "ogSiteName": "Jeff-Aporta — System Login",
+    "ogTitle": "System Login — Jeff-Aporta",
+    "imageAlt": "System Login — acceso al ecosistema"
+  },
+  "styles": [
+    "shared-base",
+    "fonts-google"
+  ],
+  "libs": []
+}
