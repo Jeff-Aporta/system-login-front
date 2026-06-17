@@ -219,7 +219,7 @@
       );
 
     return (
-      <Shell ns="SLG" title="Acceso" icon="mdi:shield-account-outline" loginGate={false} showLogout={logged}>
+      <Shell ns="SLG" loginGate={false} showLogout={logged}>
         {body}
       </Shell>
     );
