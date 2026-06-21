@@ -16,5 +16,18 @@
     "shared-base",
     "fonts-google"
   ],
-  "libs": []
+  "libs": [],
+  "readme": {
+    "tagline": "acceso, sesión y permisos Jeff-Aporta / PatyIA.",
+    "badges": ["github-pages", "react", "typescript", "mui"],
+    "preview": { "path": "docs/gh-pages.png", "alt": "Panel de acceso" },
+    "features": [
+      "**Acceso** con credenciales del laboratorio",
+      "**Dashboard de sesión**: usuario, rol y vigencia",
+      "**Permisos** del rol y excepciones por usuario",
+      "**Penalización** por intentos fallidos",
+      "**Catálogo de apps** del ecosistema con enlace directo",
+      "**Tema** claro/oscuro"
+    ]
+  }
 }
