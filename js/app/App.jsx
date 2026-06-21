@@ -56,7 +56,6 @@
               sx={{ mb: 2 }}
               value={user}
               onChange={(e) => setUser(e.target.value)}
-              helperText="Puede omitir @contapyme.com; se envía en minúsculas."
             />
             <MUI.TextField
               label="Contraseña"
