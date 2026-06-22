@@ -3,77 +3,20 @@
   "use strict";
   const MUI = MaterialUI;
 
-  function LoginForm({ onSuccess }) {
-    const UI = window.SLG.UI;
-    const LS = window.ISAFront;
-    const [user, setUser] = React.useState("");
-    const [pass, setPass] = React.useState("");
-    const [busy, setBusy] = React.useState(false);
-    const [err, setErr] = React.useState(null);
-    const [retry, setRetry] = React.useState(null);
-
-    async function submit(ev) {
-      ev.preventDefault();
-      setBusy(true); setErr(null); setRetry(null);
-      try {
-        await window.SLG.Session.login(user, pass);
-        onSuccess();
-      } catch (e) {
-        setErr(e.message || String(e));
-        if (e.retryAfterSeconds) setRetry(e.retryAfterSeconds);
-      } finally { setBusy(false); }
+  function LoginForm() {
+    const LoginPageForm = window.ISAFront?.UI?.LoginPageForm;
+    if (!LoginPageForm) {
+      return (
+        <MUI.Alert severity="error" sx={{ m: 2 }}>
+          LoginPageForm no disponible — recargue la página.
+        </MUI.Alert>
+      );
     }
-
     return (
-      <MUI.Box sx={LS.loginPageSx()}>
-        <MUI.Paper
-          className="isa-login-card isa-glass-card"
-          elevation={0}
-          sx={LS.loginCardSx()}
-          component="form"
-          onSubmit={submit}
-        >
-          {LS.LoginHeaderBand(React, MUI, UI, {
-            icon: "mdi:shield-key-outline",
-            title: "Acceso al ecosistema",
-            accent: "#5e35b1",
-          })}
-          <MUI.Box sx={{ p: { xs: 2, sm: 2.5, md: 3 } }}>
-            <MUI.Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.6 }}>
-              Una sola sesión para todas las aplicaciones Jeff-Aporta.
-            </MUI.Typography>
-            {err && (
-              <MUI.Alert severity="error" sx={{ mb: 2 }}>
-                {retry ? err + " — reintenta en " + retry + " s" : err}
-              </MUI.Alert>
-            )}
-            <MUI.TextField
-              label="Usuario"
-              autoComplete="username"
-              fullWidth
-              required
-              size="small"
-              sx={{ mb: 2 }}
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
-            />
-            <MUI.TextField
-              label="Contraseña"
-              type="password"
-              autoComplete="current-password"
-              fullWidth
-              required
-              size="small"
-              sx={{ mb: 2 }}
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-            />
-            <MUI.Button type="submit" variant="contained" fullWidth disabled={busy}>
-              {busy ? "Entrando…" : "Entrar"}
-            </MUI.Button>
-          </MUI.Box>
-        </MUI.Paper>
-      </MUI.Box>
+      <LoginPageForm
+        ns="SLG"
+        onLogin={(loginId, pass) => window.SLG.Session.login(loginId, pass)}
+      />
     );
   }
 
@@ -353,7 +296,6 @@
   function Dashboard({ data, onRefresh }) {
     const d = data;
     const u = d.user || {};
-    const pen = d.penalty;
 
     return (
       <MUI.Stack spacing={2}>
@@ -370,18 +312,6 @@
           <InfoRow label="Descripción rol" value={String(u.roleDescription ?? "")} />
           <InfoRow label="Sesión expira" value={u.exp ? new Date(Number(u.exp) * 1000).toLocaleString() : null} />
         </MUI.Paper>
-
-        {pen && (
-          <MUI.Paper className="panel" sx={{ p: 2 }}>
-            <MUI.Typography variant="h6" gutterBottom>Penalización de login</MUI.Typography>
-            <InfoRow label="Intentos fallidos" value={String(pen.failCount ?? 0)} />
-            {pen.blocked && (
-              <MUI.Alert severity="warning" sx={{ mt: 1 }}>
-                {"Bloqueado — espera " + (pen.retryAfterSeconds || 0) + " s antes de reintentar"}
-              </MUI.Alert>
-            )}
-          </MUI.Paper>
-        )}
 
         <PermissionsPanel />
 
@@ -440,15 +370,18 @@
         setLogged(true);
         refresh();
       }
+      const evt = window.SLG.Session.EVENT;
+      const onAuth = () => {
+        const ok = window.SLG.Session.isLoggedIn();
+        setLogged(ok);
+        if (ok) refresh();
+      };
+      window.addEventListener(evt, onAuth);
+      return () => window.removeEventListener(evt, onAuth);
     }, [refresh]);
-    React.useEffect(() => {
-      const f = () => setLogged(window.SLG.Session.isLoggedIn());
-      window.addEventListener(window.SLG.Session.EVENT, f);
-      return () => window.removeEventListener(window.SLG.Session.EVENT, f);
-    }, []);
 
     const body = !logged
-      ? <LoginForm onSuccess={() => refresh()} />
+      ? <LoginForm />
       : (
         <MUI.Container maxWidth="md" sx={{ py: 3 }}>
           {loading && (
