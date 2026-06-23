@@ -15,7 +15,7 @@
     return (
       <LoginPageForm
         ns="SLG"
-        onLogin={(loginId, pass) => window.SLG.Session.login(loginId, pass)}
+        onLogin={(loginId, pass, opts) => window.SLG.Session.login(loginId, pass, opts || {})}
       />
     );
   }
